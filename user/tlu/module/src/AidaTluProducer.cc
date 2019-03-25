@@ -45,7 +45,9 @@ namespace{
 
 AidaTluProducer::AidaTluProducer(const std::string name, const std::string &runcontrol)
   :eudaq::Producer(name, runcontrol){
-
+  m_duration = 0;
+  m_starttime = 0;
+  m_lasttime = 0;
 }
 
 void AidaTluProducer::RunLoop(){
@@ -326,11 +328,6 @@ void AidaTluProducer::DoStatus() {
     SetStatusTag("Freq. (avg.) [kHz]", std::to_string(post/m_duration/1000));
     SetStatusTag("Run duration [s]", std::to_string(m_duration));
     SetStatusTag("Particles", std::to_string(pret));
-    SetStatusTag("Scaler0", std::to_string(sl0));
-    SetStatusTag("Scaler1", std::to_string(sl1));
-    SetStatusTag("Scaler2", std::to_string(sl2));
-    SetStatusTag("Scaler3", std::to_string(sl3));
-    SetStatusTag("SCALER4", std::to_string(sl4));
-    SetStatusTag("SCALER5", std::to_string(sl5));
+    SetStatusTag("Scaler", std::to_string(sl0) + ":" + std::to_string(sl1) + ":" + std::to_string(sl2) + ":" + std::to_string(sl3) + ":" + std::to_string(sl4) + ":" + std::to_string(sl5));
   }
 }
